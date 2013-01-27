@@ -1,6 +1,6 @@
 describe("ServiceVssDialogView", function() {
 
-  var ServiceDetailVssSectionView, mocks;
+  var ServiceVssDialogView, mocks;
   // mock defined modules
   mocks = {
       'views/serviceDetailsView' : sinon.stub(),
@@ -9,7 +9,7 @@ describe("ServiceVssDialogView", function() {
   };
   
   // get module to test, with mock views
-  ServiceDetailVssSectionView = testr('views/ServiceDetailVssSectionView', mocks);
+  ServiceVssDialogView = testr('views/serviceVssDialogView', mocks);
 
   describe("ServiceVssDialogView init empty", function() {
 
@@ -114,6 +114,7 @@ describe("ServiceVssDialogView", function() {
       sinon.stub(mocks.router.contentRegion, "show");
 
       setFixtures('<div id="appModal"><div class="modal-body"></div></div>');
+      
       view = new ServiceVssDialogView({
         router : mocks.router,
         model : mockData.vssHeaders,
