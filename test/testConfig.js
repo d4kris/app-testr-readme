@@ -3,7 +3,7 @@ require.config({
   // app dir, relative to the SpecRunner file
 	baseUrl: '../scripts',
 	// define top level modules ?
-	deps : ['models/truckModelModel','collections/truckModelCollection','views/serviceListView', ,'views/serviceVssDialogView'],
+	deps : ['models/truckModelModel','collections/truckModelCollection','views/serviceListView'],
 	//deps : ['app'],
 	
 	// The shim config allows us to configure dependencies for

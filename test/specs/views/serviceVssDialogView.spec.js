@@ -139,30 +139,17 @@ describe("ServiceVssDialogView", function() {
       expect($('#appModal tbody tr:eq(3) td:eq(1)')).toContainHtml('<li></li>');
     });
 
-    xit("should call ServiceDetailView when click on zero or one vssHeaders row", function() {
+    xit("should call ServiceDetailView when click on row", function() {
       var clickSpy = spyOnEvent('#appModal tbody tr:eq(0)', 'click');
       $('#appModal tbody tr:eq(0)').click();
       expect('click').toHaveBeenTriggeredOn('#appModal tbody tr:eq(0)');
       expect(clickSpy).toHaveBeenTriggered();
 
-      expect(mocks.serviceDetailsView).toHaveBeenCalledOnce();
-      expect(mocks.serviceDetailsView).toHaveBeenCalledWith({model: [], router: mocks.router, desc: 'TITLE1'});
+      expect(mocks['views/serviceDetailsView']).toHaveBeenCalledOnce();
+      expect(mocks['views/serviceDetailsView']).toHaveBeenCalledWith({model: [], router: mocks.router, desc: 'TITLE1'});
     });
     
-    xit("should call ServiceDetailVssSectionView when click on multiple vssHeaders row", function() {
-      var clickSpy = spyOnEvent('#appModal tbody tr:eq(2)', 'click');
-      $('#appModal tbody tr:eq(2)').click();
-      expect('click').toHaveBeenTriggeredOn('#appModal tbody tr:eq(2)');
-      expect(clickSpy).toHaveBeenTriggered();
-
-      expect(mocks.serviceDetailsVssView).toHaveBeenCalledOnce();
-      expect(mocks.serviceDetailsVssView).toHaveBeenCalledWith({
-        model: mockData.vssHeaders3, 
-        router: mocks.router, 
-        desc: 'TITLE3'});
-    });
 
   });
 
-});
 });

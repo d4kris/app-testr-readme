@@ -3,7 +3,7 @@ describe("ServiceListView", function() {
   var ServiceListView, mocks;
   // mock defined modules
   mocks = {
-      'views/ServiceDetailVssSectionView' : sinon.stub(),
+      'views/serviceVssDialogView' : sinon.stub(),
       'views/serviceDetailsView' : sinon.stub(),
       router : sinon.stub(),
       model : sinon.stub()
@@ -181,18 +181,18 @@ describe("ServiceListView", function() {
       expect('click').toHaveBeenTriggeredOn('#list tbody tr:eq(0)');
       expect(clickSpy).toHaveBeenTriggered();
 
-      expect(mocks.serviceDetailsView).toHaveBeenCalledOnce();
-      expect(mocks.serviceDetailsView).toHaveBeenCalledWith({model: [], router: mocks.router, desc: 'TITLE1'});
+      expect(mocks['views/serviceDetailsView']).toHaveBeenCalledOnce();
+      expect(mocks['serviceDetailsView']).toHaveBeenCalledWith({model: [], router: mocks.router, desc: 'TITLE1'});
     });
     
-    it("should call ServiceDetailVssSectionView when click on multiple vssHeaders row", function() {
+    it("should call ServiceVssDialogView when click on multiple vssHeaders row", function() {
       var clickSpy = spyOnEvent('#list tbody tr:eq(2)', 'click');
       $('#list tbody tr:eq(2)').click();
       expect('click').toHaveBeenTriggeredOn('#list tbody tr:eq(2)');
       expect(clickSpy).toHaveBeenTriggered();
 
-      expect(mocks.serviceDetailsVssView).toHaveBeenCalledOnce();
-      expect(mocks.serviceDetailsVssView).toHaveBeenCalledWith({
+      expect(mocks['views/serviceVssDialogView']).toHaveBeenCalledOnce();
+      expect(mocks['views/serviceVssDialogView']).toHaveBeenCalledWith({
         model: mockData.vssHeaders3, 
         router: mocks.router, 
         desc: 'TITLE3'});
