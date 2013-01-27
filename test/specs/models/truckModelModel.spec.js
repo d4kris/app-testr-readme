@@ -4,7 +4,7 @@ describe('TruckModelModel', function () {
 	console.log('running TruckModelModelTest...');
 
 	it('should have defaults set', function () {
-	  var model = new TruckModel();
+	  var model = new TruckModelModel();
 	  console.log('running TruckModelModelTest.1');
 	  expect(model.get('id')).toEqual('');
 	  expect(model.get('brand')).toEqual('');
@@ -12,7 +12,7 @@ describe('TruckModelModel', function () {
 	});
 
 	it('should parse modelId to id', function () {
-	  var resp, parsedAttributes, model = new TruckModel();
+	  var resp, parsedAttributes, model = new TruckModelModel();
 	  // create response
 	  resp = {
 		brand : 'Volvo',

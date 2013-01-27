@@ -1,6 +1,7 @@
 //require(['views/serviceListView'], function(ServiceListView) {
 describe("ServiceListView", function() {
   var ServiceListView, mocks;
+  console.log('Runnging ServiceListView.spec');
   // mock defined modules
   mocks = {
       'views/serviceVssDialogView' : sinon.stub(),
