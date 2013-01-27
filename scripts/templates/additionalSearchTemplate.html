@@ -1,0 +1,23 @@
+<div class="accordion-group">
+<div class="accordion-heading">
+	<a class="accordion-toggle" data-toggle="collapse" 
+		data-parent="#additionalSearch" href="#collapseAdditional">
+		Additional search values</a>
+</div>
+<div id="collapseAdditional" class="accordion-body collapse">
+	<div class="accordion-inner">
+		<div class="row-fluid">
+			<label class="span5">Search by:</label>
+			<select name="additionalSearch" class="span7" id="additionalSearch">
+				<% _.each(additionalSearches, function( as ) { %>
+					<option value="<%= as.id %>"><%= as.description %></option>
+				<% }) %>
+			</select>
+		</div>
+		<div class="row-fluid"> 
+			<label class="span5">Search for:</label>
+			<input type="text" class="span7" name="additionalValue" id="additionalValue"></input>
+		</div>
+	</div>
+</div>
+</div>

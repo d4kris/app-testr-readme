@@ -1,0 +1,15 @@
+<td>
+  <input type="checkbox" name="vssChk" value="dchk"/>
+</td>
+<td>
+  <ul>
+	<% if ( vsses.length > 1 ) { 
+      _.each(vsses, function(vss) { %>
+          <li><%= vss.vssDescription %></li>
+      <% }) %>
+    <% } else { %> 
+      <li><%= vsses.vssDescription %></li>
+    <% } %>
+  </ul>      
+</td>
+<td><%= date %></td>

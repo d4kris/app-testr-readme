@@ -1,0 +1,52 @@
+@tabsBackground:       #D6D7D9;
+@tabsBorder:           #E0E0E0;
+@tabsColor:            #000000;
+@tabsBackgroundActive: #F6F6F6;
+@tableBackground:      #F1F1F1;
+@tableBorder:          #DFDFDF;
+@tableBackgroundEven:  #F9F9F9;
+@tableBackgroundOdd:   #FFFFFF;
+@tableBackgroundHover: #D6D7D9;
+@navbarHeight:         30px; 
+@logoHeight:	       14px;
+
+/* display tabs (border) always, common brand colors */
+.nav-tabs > li > a {
+  background-color: @tabsBackground;
+  border: 1px solid @tabsBorder;
+  color : @tabsColor;
+}
+.nav-tabs > .active > a,
+.nav-tabs > a:hover {
+  background-color: @tabsBackgroundActive;
+}
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner {
+  border-width: 0 0 0px;
+}
+.navbar .brand {
+  // Vertically center the logo given @navbarHeight
+  padding: ((@navbarHeight - @logoHeight) / 2) 20px ((@navbarHeight - @logoHeight) / 2);
+}
+
+/**
+ * Table colors 
+ */
+/* override datatables sorting color */
+.table-bordered thead tr th {
+	background-color: @tableBackground;
+	border-color: @tableBorder;
+	border-bottom: 0px;
+}
+/* even rows and odd rows */
+.table-bordered tr.even td {
+	background-color: @tableBackgroundEven;
+}
+.table-bordered tr.odd td {
+	background-color: @tableBackgroundOdd;
+}
+#list .table-bordered tbody tr:hover td {
+	background-color: @tableBackgroundHover;
+	cursor: pointer;
+}

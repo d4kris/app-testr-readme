@@ -1,0 +1,125 @@
+<div class="modal-body">
+	<div id="icrform" class="container-fluid">
+		<div class="accordion" id="icrDashboard">
+			<div class="accordion-group">
+				<div class="accordion-heading pagination-centered" id="arrow">
+					<a class="accordion-toggle" data-toggle="collapse"
+						data-parent="#icrDashboard" href="#collapseIcr"> <i
+						class="icon-circle-arrow-down "></i> </a>
+				</div>
+				<div id="collapseIcr" class="accordion-body collapse">
+					<% if ( firstName ) { %>
+					<div class="row-fluid">
+						<label class="span5">Name </label> <span class="span7"><%=firstName
+							%> <%=lastName %> </span>
+					</div>
+					<%}%> <% if ( partnerId ) { %>
+					<div class="row-fluid">
+						<label class="span5">Partner ID</label> <span class="span7"><%=partnerId
+							%></span>
+					</div>
+					<%}%> <% if ( settingsGeneral.dataLanguage1st ) { %>
+					<div class="row-fluid">
+						<label class="span5">Data Language</label> <span class="span7"><%=settingsGeneral.dataLanguage1st
+							%></span>
+					</div>
+					<%}%> <% if ( req.chassisSeries ) { %>
+					<div class="row-fluid">
+						<label class="span5">Chassis ID</label> <span class="span7"><%=
+							req.chassisSeries %>-<%=
+							req.chassisNo %></span>
+					</div>
+					<%}%> <% if ( req.modelId ) { %>
+					<div class="row-fluid">
+						<label class="span5">Model</label> <span class="span7"><%=
+							req.modelId %></span>
+					</div>
+					<%}%> <% if ( settingsGeneral.dataLanguage2nd ) { %>
+					<div class="row-fluid">
+						<label class="span5">Second Preferred Data Language</label> <span
+							class="span7"><%= settingsGeneral.dataLanguage2nd %></span>
+					</div>
+					<%}%> <% if ( req.vin ) { %>
+					<div class="row-fluid">
+						<label class="span5">VIN</label> <span class="span7"><%=
+							req.vin %></span>
+					</div>
+					<%}%> <% if ( req.fgrp ) { %>
+					<div class="row-fluid">
+						<label class="span5">Function group</label> <span class="span7"><%=
+							req.fgrp %></span>
+					</div>
+					<%}%> <% if ( req.infoTypeCompleteId ) { %>
+					<div class="row-fluid">
+						<label class="span5">Information type</label> <span class="span7"><%=
+							req.infoTypeCompleteId %></span>
+					</div>
+					<%}%>
+
+					<div class="row-fluid">
+						<label class="span5">Identity</label> <span class="span7"><%=ioid
+							%></span>
+					</div>
+
+					<div class="row-fluid">
+						<label class="span5">Title</label> <span class="span7"><%=desc
+							%></span>
+					</div>
+
+					<% if ( req.additionalSearchType ) { %>
+					<div class="row-fluid">
+						<label class="span5">Additional search values</label> <span
+							class="span7"><%=req.additionalSearchType %></span>
+					</div>
+					<%}%>
+				</div>
+			</div>
+		</div>
+	<div class="row-fluid">
+		<label for="brand">Brand*</label> 
+			<% if (vehicle.brand) { %>
+			<%=vehicle.brand%>
+			<%}else{%>
+			<select name="brand"
+			class="span5 required" id="brand" style="height: 100%;">
+			<option value="">-Select-</option> <% _.each(settingsGeneral.brands,
+			function( as ) { %>
+			<option value="<%= as %>"><%= as %></option> <% }) %>
+			</select>	<%}%>
+		 <label for="problemType">Problem Type*</label> <select
+			name="problemType" class="span5" id="problemType"
+			style="height: 100%;">
+			<option value="">-Select-</option> <%
+			_.each(settingsICR.problemTypes, function( as ) { %>
+			<option value="<%= as.id %>"><%= as.description %></option> <% }) %>
+		</select>
+	</div>
+
+	<div class="row-fluid">
+		<label for="vehicleStatus">Vehicle status*</label> <select
+			class="span5" id="vehicleStatus" name="vehicleStatus"
+			style="height: 100%;">
+			<option value="">-Select-</option> <%
+			_.each(settingsICR.vehicleStatuses, function( as ) { %>
+			<option value="<%= as.id %>"><%= as.description %></option> <% }) %>
+		</select>
+	</div>
+
+	<div class="row-fluid">
+		<label for="problemDesc">Problem description</label>
+		<textarea id="problemDesc" name="problemDesc" class="span7" rows="8"></textarea>
+	</div>
+	<div class="row-fluid status-bar">
+		<div class="span12">
+			<div class="alert alert-success" style="display: none">
+				<b>Success!</b> Ticket has been logged.
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<input type="button" id="icrsend" class="btn btn-primary"
+		disabled="disabled" value="Send" />
+</div>
+	</div>

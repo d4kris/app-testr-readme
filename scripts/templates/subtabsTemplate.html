@@ -1,0 +1,12 @@
+<ul class="nav nav-tabs">
+	<% if (showSearch) { %>
+	<li id="searchTab"<% if(active == 'search') {%>class="active"<%}%>>
+		<a href="#<%= menu %>/search">Navigate</a>
+	</li>
+	<% } %>
+	<% if (showDetails) { %>
+	<li id="detailsTab"<% if(active == 'details') {%> class="active"<%}%>>
+		<a href="#<%= menu %>/details">Details</a>
+	</li>
+	<% } %>
+</ul>

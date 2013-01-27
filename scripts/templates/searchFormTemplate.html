@@ -1,0 +1,48 @@
+
+<div class="row-fluid">
+	<div id="searchform" class="span3  border-right">
+		<div id="collapse" class="span11">
+			<form id="form" class="collapse in width">
+				<div class="legend-small">Search</div>
+				<label for="chassiID_1" class="span12">Chassis series number</label>
+				<input type="text" name="chassisSeries" id="chassisSeries"
+					class="span6 uppercase" value="<%= chassisSeries %>" /> <input
+					type="text" name="chassisNo" id="chassisNo" class="span6"
+					value="<%= chassisNo %>" /> <label for="vin" class="span12">VIN
+					number</label> <input type="text" name="vin" id="vin" placeholder="VIN"
+					class="span12 uppercase" value="<%= vin %>" /> <label for="model"
+					class="span12">Model</label>
+				<div id="modelTypeahead" class="span11"></div>
+
+				<label for="functionGroup" class="span12">Function group</label>
+				<div id="functionGroupTypeahead" class="span11"></div>
+				<div id="functionGroupLabel" class="span12 selectedLabel"></div>
+
+				<label for="infoType" class="span12">Info type</label> <select
+					name="infoType" class="infoTypes span12">
+				</select>
+				<div>
+					<input type="button" id="clear" class="btn" value="Clear" /> <input
+						type="submit" id="search" class="btn" disabled="disabled"
+						value="Search" />
+				</div>
+				<div class="accordion span12" id="additionalSearch"></div>
+			</form>
+		</div>
+		<div id="slide" class="span1">
+
+			<div class="accordion-heading pagination-centered">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-target="#form"><i class="icon-circle-arrow-left "></i> </a>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="results" class="span9">
+		<div class="legend-small">Search results</div>
+		<div id="list">
+			<p>Enter search criteria and click Search button</p>
+		</div>
+	</div>
+</div>

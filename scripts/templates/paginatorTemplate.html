@@ -1,0 +1,71 @@
+<div class="pagination">
+
+ 	<ul>
+		<% if (firstPage != currentPage) { %>
+			<li><a href="#" class="severfirst">First</a></li>
+		<% } else { %>
+			<li class="disabled"><a href="#">First</a></li>
+		<% } %>
+	
+		<% if (currentPage > firstPage) { %>
+			<li><a href="#" class="serverprevious">Previous</a></li>
+		<% }else{ %>
+			<li class="disabled"><a href="#">Previous</a></li>
+		<% }%>
+		
+		<% for(p=0;p<totalPages;p++) { %>
+			<% if (currentPage == p) { %>
+				<li class="active"><a href="#"><%= p+1 %></a></li>
+			<% } else { %>
+				<li><a href="#"><%= p+1 %></a></li>
+			<% } %>	
+		<%	
+		}%>
+
+		<% if (currentPage+1 < totalPages) { %>
+			<li><a href="#" class="servernext">Next</a></li>
+		<% } else { %>
+			<li class="disabled"><a href="#">Next</a></li>
+		<% } %>
+	
+		<% if (lastPage != currentPage+1) { %>
+			<li><a href="#" class="serverlast">Last</a></li>
+		<% } else { %>
+			<li class="disabled"><a href="#">Last</a></li>
+		<% } %>
+	</ul>
+</div>
+
+<!-- <div class="breadcrumb pull-right"> -->
+<!-- 	<span class="cell serverhowmany"> -->
+<!-- 		Show -->
+<!-- 		<% if (perPage == 10) { %> -->
+<!-- 			<a href="#" class="selected">10</a> -->
+<!-- 		<% } else { %> -->
+<!-- 			<a href="#">10</a> -->
+<!-- 		<% } %> -->
+<!-- 		| -->
+<!-- 		<% if (perPage == 20) { %> -->
+<!-- 			<a href="#" class="selected">20</a> -->
+<!-- 		<% } else { %> -->
+<!-- 			<a href="#">20</a> -->
+<!-- 		<% } %> -->
+<!-- 		| -->
+<!-- 		<% if (perPage == 100) { %> -->
+<!-- 			<a href="#" class="selected">100</a> -->
+<!-- 		<% } else { %> -->
+<!-- 			<a href="#">100</a> -->
+<!-- 		<% } %> -->
+<!-- 		per page -->
+<!-- 	</span> -->
+
+<!-- 	<span class="divider">/</span> -->
+
+<!-- 	<span class="cell first records"> -->
+<!-- 		Page: <span class="current"><%= currentPage+1 %></span> -->
+<!-- 		of -->
+<!-- 		<span class="total"><%= totalPages %></span> -->
+<!-- 					shown -->
+<!-- 	</span> -->
+
+<!-- </div> -->
