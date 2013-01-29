@@ -11,7 +11,7 @@ define([
 ], function($, _, Backbone, HeaderTemplate, RowTemplate, 
     ServiceDetailsModel, ServiceDetailView) {
 
-  var ServiceDetailVssSectionView = Backbone.View.extend({
+  var ServiceVssDialogView = Backbone.View.extend({
 
     tagName   : 'table',
     className : 'table table-bordered',
@@ -91,5 +91,5 @@ define([
 
   });
 
-  return ServiceDetailVssSectionView;
+  return ServiceVssDialogView;
 });

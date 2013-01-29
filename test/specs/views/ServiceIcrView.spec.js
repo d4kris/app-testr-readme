@@ -9,19 +9,19 @@ describe("ServiceIcrView", function() {
       model : {
         date: "18/06/09",
         desc: "Core plug, replace",
-        fileURL: "/impact/static/lang/enGB/sman37246_node648.xhtm",
+        fileURL: "service/file/url",
         ioid: "124367595",
-        notesURL: "services/notes.json/servicenotes/124367595",
-        toolsNeededURL: "services/toolsinfo.json/toolsNeeded?ioId=124367595",
+        notesURL: "service/notes/url",
+        toolsNeededURL: "services/tools",
         vsses: Array[8]
       }
   };
   
   // TODO use https://github.com/velesin/jasmine-jquery#json-fixtures
   mockData.userSettings = {
-    "email": "kristin.luhr@consultant.volvo.com",
-    "firstName": "Kristin",
-    "lastName": "Luhr",
+    "email": "kris@test.com",
+    "firstName": "Kris",
+    "lastName": "Test",
     "loggedIn": "2013-01-29T08:44:34.625+01:00",
     "partnerId": "XI000001",
     "settingsComponents": {
@@ -34,11 +34,11 @@ describe("ServiceIcrView", function() {
     },
     "settingsGeneral": {
       "brands": [
-        "ETB",
-        "MACK",
-        "RENAULT",
-        "UD",
-        "VTB"
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
       ],
       "chassisRestriction": "false",
       "dataLanguage1st": "en_GB",
@@ -59,74 +59,6 @@ describe("ServiceIcrView", function() {
       "showToolsAdmin": "true",
       "showUserAdmin": "true",
       "startTab": "components",
-      "warehouses": [
-        {
-          "brand": "VTB",
-          "consumerCode": "1002",
-          "name": "GENT",
-          "order": "1"
-        },
-        {
-          "brand": "MACK",
-          "consumerCode": "4306",
-          "name": "BALTIMORE",
-          "order": "2"
-        },
-        {
-          "brand": "ETB",
-          "consumerCode": "8433",
-          "name": "BANGALORE",
-          "order": "3"
-        },
-        {
-          "brand": "VTB",
-          "consumerCode": "4173",
-          "name": "COLUMBUS",
-          "order": "4"
-        },
-        {
-          "brand": "VTB",
-          "consumerCode": "2720",
-          "name": "CURITIBA",
-          "order": "5"
-        },
-        {
-          "brand": "UD",
-          "consumerCode": "2924",
-          "name": "GUNMA",
-          "order": "6"
-        },
-        {
-          "brand": "RENAULT",
-          "consumerCode": "31971",
-          "name": "LYON",
-          "order": "7"
-        },
-        {
-          "brand": "VTB",
-          "consumerCode": "19658",
-          "name": "MEXICO CITY",
-          "order": "8"
-        },
-        {
-          "brand": "VTB",
-          "consumerCode": "7835",
-          "name": "MINTO",
-          "order": "9"
-        },
-        {
-          "brand": "UD",
-          "consumerCode": "8430",
-          "name": "SHANGHAI",
-          "order": "10"
-        },
-        {
-          "brand": "UD",
-          "consumerCode": "8431",
-          "name": "SINGAPORE",
-          "order": "11"
-        }
-      ],
       "webServerlocationKey": "DEFAULT"
     },
     "settingsICR": {
@@ -214,11 +146,11 @@ describe("ServiceIcrView", function() {
         },
         {
           "description": "Vendor to OEM Parts",
-          "id": "VENDOR_TO_VOLVO_SEARCH"
+          "id": "VENDOR_TO_TEST_SEARCH"
         },
         {
           "description": "OEM to Vendor Parts",
-          "id": "VOLVO_TO_VENDOR_SEARCH"
+          "id": "TEST_TO_VENDOR_SEARCH"
         },
         {
           "description": "Vendor Web Links",
@@ -351,7 +283,7 @@ describe("ServiceIcrView", function() {
       "partnerVstFormat": "false",
       "partnerVstLevel": "true"
     },
-    "userId": "A031146"
+    "userId": "u123"
   };
 
   mockData.router = { 
@@ -371,8 +303,8 @@ describe("ServiceIcrView", function() {
       date: "18/06/09",
       functionGroup: "2129",
       hasRequiredParts: "false",
-      ihId: "8000001296",
-      infoHeaderSerivceURL: "services/serviceinfo.json/infoheader?ihId=8000001296&modelId=FH12",
+      ihId: "2",
+      infoHeaderSerivceURL: "services/infoheader",
       infoHeaderServiceURL: "",
       infoType: "Repair",
       infoTypeId: "7",
@@ -386,8 +318,8 @@ describe("ServiceIcrView", function() {
       date: "21/02/06",
       functionGroup: "2125",
       hasRequiredParts: "false",
-      ihId: "8000001292",
-      infoHeaderSerivceURL: "services/serviceinfo.json/infoheader?ihId=8000001292&modelId=FH12",
+      ihId: "3",
+      infoHeaderSerivceURL: "services/infoheader",
       infoHeaderServiceURL: "",
       infoType: "Repair",
       infoTypeId: "7",
@@ -398,10 +330,10 @@ describe("ServiceIcrView", function() {
       vssHeaders: {}
     });
     mockData.serviceList1.vehicle = {
-      "brand": "VTB",
+      "brand": "B",
       "chassisNo": "595959",
       "chassisSeries": "A",
-      "model": "FH16",
+      "model": "ZZ16",
       "productClass": "04"
     };
     mockData.serviceList1.requestParams = [
@@ -479,9 +411,9 @@ describe("ServiceIcrView", function() {
 
     it("should have correct info from model", function() {
       // Name
-      expect(view.$el.find('#collapseIcr label:eq(0)').next()).toContainHtml('Kristin Luhr');
+      expect(view.$el.find('#collapseIcr label:eq(0)').next()).toContainHtml('Kris Test');
       // Partner id
-      expect(view.$el.find('#collapseIcr label:eq(1)').next()).toContainHtml('XI000001');
+      expect(view.$el.find('#collapseIcr label:eq(1)').next()).toContainHtml('1');
       // Data language
       expect(view.$el.find('#collapseIcr label:eq(2)').next()).toContainHtml('en_GB');
       // Model
@@ -503,8 +435,8 @@ describe("ServiceIcrView", function() {
       date: "18/06/09",
       functionGroup: "2129",
       hasRequiredParts: "false",
-      ihId: "8000001296",
-      infoHeaderSerivceURL: "services/serviceinfo.json/infoheader?ihId=8000001296&modelId=FH12",
+      ihId: "6",
+      infoHeaderSerivceURL: "services/infoheader",
       infoHeaderServiceURL: "",
       infoType: "Repair",
       infoTypeId: "7",
@@ -518,28 +450,28 @@ describe("ServiceIcrView", function() {
       date: "21/02/06",
       functionGroup: "2125",
       hasRequiredParts: "false",
-      ihId: "8000001292",
-      infoHeaderSerivceURL: "services/serviceinfo.json/infoheader?ihId=8000001292&modelId=FH12",
+      ihId: "8",
+      infoHeaderSerivceURL: "services/infoheader",
       infoHeaderServiceURL: "",
       infoType: "Repair",
       infoTypeId: "7",
       operationId: "2125-06-03-02",
-      operationNo: "21235-3",
+      operationNo: "2-3",
       singleVss: true,
       title: "Flywheel housing run-out, check. Clutch removed",
       vssHeaders: {}
     });
     mockData.serviceList2.vehicle = {
-      "brand": "VTB",
+      "brand": "E",
       "chassisNo": "",
       "chassisSeries": "",
-      "model": "FH12",
+      "model": "ZZ12",
       "productClass": "04"
     };
     mockData.serviceList2.requestParams = [
       {
         "name": "modelId",
-        "value": "FH12"
+        "value": "ZZ12"
       },
       {
         "name": "infoTypeCompleteId",
@@ -562,7 +494,7 @@ describe("ServiceIcrView", function() {
       chassisSeries: "",
       functionGroup: "212",
       infoType: "78",
-      model: "FH12",
+      model: "ZZ12",
       vin: "123456"
     });
     

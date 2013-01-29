@@ -3,12 +3,12 @@ define([
     'underscore',
     'backbone',
     'text!templates/serviceSearchTemplate.html',
-    'views/ServiceDetailVssSectionView',
+    'views/serviceVssDialogView',
     'views/serviceDetailsView',
     'dataTables',
     'modal'
 ], function ( $, _, Backbone, ServiceSearchTemplate,
-    ServiceDetailVssSectionView, ServiceDetailsView ) {
+    ServiceVssDialogView, ServiceDetailsView ) {
 
   var ListView = Backbone.View.extend({
 
@@ -120,8 +120,8 @@ define([
         this.router.contentRegion.show(detailsView);
         
       } else {
-        // open new window with ServiceDetailVssSectionView table
-        var view = new ServiceDetailVssSectionView({
+        // open new window with ServiceVssDialogView table
+        var view = new ServiceVssDialogView({
           model : this.model.get('vssHeaders'),
           router : this.router,
           desc : this.model.get('title')

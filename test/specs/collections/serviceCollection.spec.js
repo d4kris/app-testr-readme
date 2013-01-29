@@ -12,11 +12,11 @@ describe('ServiceCollection', function () {
     // add raw object to check what type it will be converted to
     collection.add({
       id : 2,
-      brand : 'Renault'
+      brand : 'TEST2'
     });
     model = collection.get(2);
 //    expect(model instanceof ServiceModel).toBeTruthy();
-    expect(model.get('brand')).toEqual('Renault');
+    expect(model.get('brand')).toEqual('TEST2');
   });
 
   xit('should have a url of: services/user.json/models', function () {
@@ -33,9 +33,9 @@ describe('ServiceCollection', function () {
     var resp, parsedAttributes, collection = new ServiceCollection();
     // create response
     resp = {
-      model : 'Volvo'
+      model : 'TEST'
     };
     parsedAttributes = collection.parse(resp);
-    expect(parsedAttributes).toEqual('Volvo');
+    expect(parsedAttributes).toEqual('TEST');
   });
 });
