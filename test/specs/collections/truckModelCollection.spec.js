@@ -3,7 +3,7 @@ describe('TruckModelCollection', function () {
   var TruckModelCollection, TruckModelModel;
   
   console.log('running TruckModelCollectionTest');
-
+  
   TruckModelCollection = testr('collections/truckModelCollection');
   TruckModelModel = testr('models/truckModelModel');
             
@@ -12,10 +12,12 @@ describe('TruckModelCollection', function () {
     console.log('running TruckModelCollectionTest.1');
     // add raw object to check what type it will be converted to
     collection.add({
-      id : 2
+      id : 2,
+      brand : 'Renault'
     });
     model = collection.get(2);
-    expect(model instanceof TruckModelModel).toBeTruthy();
+//    expect(model instanceof TruckModelModel).toBeTruthy();
+    expect(model.get('brand')).toEqual('Renault');
   });
 
   it('should have a url of: services/user.json/models', function () {
@@ -29,13 +31,12 @@ describe('TruckModelCollection', function () {
   });
 
   it('should parse model from response', function () {
-    var resp, parsedAttributes, model = new TruckModelCollection();
+    var resp, parsedAttributes, collection = new TruckModelCollection();
     // create response
     resp = {
-      model : 'Volvo',
-      modelId : '123'
+      model : 'Volvo'
     };
-    parsedAttributes = model.parse(resp);
+    parsedAttributes = collection.parse(resp);
     expect(parsedAttributes).toEqual('Volvo');
   });
 });

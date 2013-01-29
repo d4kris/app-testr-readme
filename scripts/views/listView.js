@@ -33,7 +33,8 @@ define([
 
       this.$el.dataTable({
         "aoColumns" : headers,
-        "iDisplayLength": 25
+        "iDisplayLength": 25,
+        "sDom": '<"top"lf>rt<"bottom"p><"clear">'
       });
 
       return this.el;

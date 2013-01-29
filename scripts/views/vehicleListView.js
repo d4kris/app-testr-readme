@@ -12,7 +12,7 @@ define([
   var VehicleListView = Backbone.View.extend({
 
     tagName : 'table',
-    className : 'table table-bordered',
+    className : 'table table-bordered tablepointer',
 
     initialize : function ( options ) {
       console.log('VehicleListView initialize');

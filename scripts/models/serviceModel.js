@@ -11,7 +11,7 @@ define([
       //picking the date field form the VSS headers as we do not have any in headers
       response.date = response.vssHeaders.date;
       // need to handle multiple vss headers differently in view and template
-      response.singleVss = (response.vssHeaders.length < 2);
+      response.singleVss = !(response.vssHeaders.length > 1);
 
       return response;
     },

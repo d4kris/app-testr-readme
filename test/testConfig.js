@@ -3,8 +3,14 @@ require.config({
   // app dir, relative to the SpecRunner file
 	baseUrl: '../scripts',
 	// define top level modules ?
-	//deps : ['models/truckModelModel','collections/truckModelCollection'],
-	deps : ['app'],
+	deps : ['models/searchFormModel',
+	        'models/truckModelModel',
+          'collections/truckModelCollection',
+          'collections/serviceCollection',
+          'models/serviceIcrModel',
+          'views/ServiceIcrView',
+          'views/serviceListView'
+	        ],
 	
 	// The shim config allows us to configure dependencies for
 	// scripts that do not call define() to register a module
@@ -33,6 +39,7 @@ require.config({
     'modal'      : 'vendor/bootstrap/js/bootstrap-modal',
     'accordion'  : 'vendor/bootstrap/js/bootstrap-collapse',
     'dataTables' : 'vendor/datatables/js/jquery.dataTables.min',
-    'marionette' : 'vendor/marionette/backbone.marionette.min'
+    'marionette' : 'vendor/marionette/backbone.marionette.min',
+    'models'     : 'models'
   }
 });

@@ -2,12 +2,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'collections/servicenotesCollection',
     'models/serviceDetailsModel',
+    'models/serviceNotesModel',
+    'views/serviceNotesView',
+    'views/servicenotesFormView',
     'views/ServiceIcrView',
     'text!templates/serviceDetailsTemplate.html'
-], function ( $, _, Backbone, ServiceDetailsModel, ServiceIcrView,
-    DetailsTemplate ) {
-  
+], function ( $, _, Backbone, ServiceNotesCollection,ServiceDetailsModel, 
+		ServiceNotesModel,ServiceNotesView,ServicenotesFormView,ServiceIcrView,DetailsTemplate ) {
+
   /**
    * Display a detailed view of a service
    */
@@ -74,9 +78,46 @@ define([
 
     notes : function ( event ) {
       console.log('click notes in details :');
-
-      $('#icrModal .modal-body').html(view.el);
-      $('#icrModal').modal({ backdrop : 'static' });
+      
+      var self = this;
+      var view, $notesModal,sendModel; 
+      
+      /* need  the serviceList to get the brand for the notes post/put call*/
+      this.serviceList = this.router.searchResults['serviceList'];   
+      var notesList = new ServiceNotesCollection([], {
+          ioid : self.model.ioid
+        });
+      // open new window with ServiceNotesView dialog  
+      var notesListView = new ServiceNotesView({
+          model : notesList,
+          ioid : self.model.ioid,
+          brand : self.serviceList.vehicle.brand
+          
+        });
+        $('#notesModal .modal-body #notesList').html(notesListView.el); 
+        
+      // create a model to save the data to send to server
+      sendModel = new ServiceNotesModel({
+    	  ioid : self.model.ioid,
+          brand : self.serviceList.vehicle.brand          
+      });
+      
+      // notes form  view with in Notes dialog  
+      newNotesView = new ServicenotesFormView({
+        model : sendModel,
+        collection:notesList
+      });
+     
+      // hide iframe div since it is displayed on top of modal in ie browser...
+     $notesModal = $('#notesModal');
+      $('#one').addClass('hideIframe');      
+      $notesModal.on('hide', function ( e ) {          
+          if(e.target===notesModal){
+          $('#one').toggleClass('hideIframe');
+          newNotesView.remove();
+          notesListView.remove();
+          }
+        });
     }
   });
 

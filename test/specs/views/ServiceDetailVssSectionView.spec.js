@@ -1,15 +1,22 @@
+require([ 
+ 'jquery', 
+ 'underscore', 
+ 'backbone', 
+ 'marionette'
+], function($, _, Backbone, Marionette, DataTables) {
+
 describe("ServiceVssDialogView", function() {
 
-  var ServiceDetailVssSectionView, mocks;
-  // mock defined modules
-  mocks = {
-      'views/serviceDetailsView' : sinon.stub(),
+  // global mocks for this test, can only define() once
+  var mocks = {
+      serviceDetailsView : sinon.stub(),
       router : sinon.stub(),
       model : sinon.stub()
   };
-  
-  // get module to test, with mock views
-  ServiceDetailVssSectionView = testr('views/ServiceDetailVssSectionView', mocks);
+  // define mock modules for the other view
+  define('views/serviceDetailsView',[],function() {
+    return mocks.serviceDetailsView;
+  });
 
   describe("ServiceVssDialogView init empty", function() {
 
@@ -18,7 +25,7 @@ describe("ServiceVssDialogView", function() {
         desc : 'Description'
     };
     
-    beforeEach(function () {
+    requireDependencies(['views/ServiceDetailVssSectionView'], function (ServiceVssDialogView) {
       setFixtures('<div id="appModal"><div class="modal-body"></div></div>');
       view = new ServiceVssDialogView({
         router : mocks.router,
@@ -55,7 +62,13 @@ describe("ServiceVssDialogView", function() {
 
     var view, mockData = {};
     
-    beforeEach(function () {
+    requireDependencies(['views/ServiceDetailVssSectionView'], function (ServiceVssDialogView) {
+
+
+      // needed to get sorting correct on table, same as in app.js
+      $.extend($.fn.dataTableExt.oStdClasses, {
+        'sSortColumn' : '' // no class for sorted column
+      });
       
       mockData.vssHeaders = [{
         date: '21/02/06',

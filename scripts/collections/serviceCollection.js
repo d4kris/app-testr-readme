@@ -34,9 +34,10 @@ define([
 
     parse : function(response) {
       // headings are wrapped in a headers object that BB turns into an
-      // array
+      // array. Store the search parameters in the result too
       this.requestParams = response.requestParams;
       this.vehicle = response.vehicle;
+      this.usedFgrp = response.usedFgrp;
       return response.headers;
     }
   });

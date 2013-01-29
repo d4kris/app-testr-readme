@@ -9,8 +9,12 @@ define([
       userId : "",
       startTab : "",
       settingsGeneral : {},
+      settingsICR     : {},
+      settingsMyList  : {},
       settingsParts   : {},
-      settingsService : {}
+      settingsService : {},
+      settingsStandardParts : {},
+      settingsStandardTimes : {}
     }, 
     
     url : "../services/user.json/settings"

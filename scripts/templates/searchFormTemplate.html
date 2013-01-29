@@ -6,11 +6,11 @@
 				<div class="legend-small">Search</div>
 				<label for="chassiID_1" class="span12">Chassis series number</label>
 				<input type="text" name="chassisSeries" id="chassisSeries"
-					class="span6 uppercase" value="<%= chassisSeries %>" /> <input
-					type="text" name="chassisNo" id="chassisNo" class="span6"
+					class="span6 uppercase"  maxlength="5" value="<%= chassisSeries %>" /> <input
+					type="text" name="chassisNo" id="chassisNo" class="span6 Numbers" maxlength="6"
 					value="<%= chassisNo %>" /> <label for="vin" class="span12">VIN
 					number</label> <input type="text" name="vin" id="vin" placeholder="VIN"
-					class="span12 uppercase" value="<%= vin %>" /> <label for="model"
+					class="span12 uppercase" maxlength="17" value="<%= vin %>" /> <label for="model"
 					class="span12">Model</label>
 				<div id="modelTypeahead" class="span11"></div>
 

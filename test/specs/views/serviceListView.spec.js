@@ -1,13 +1,20 @@
 //require(['views/serviceListView'], function(ServiceListView) {
 describe("ServiceListView", function() {
-  var ServiceListView, mocks;
-  // mock defined modules
-  mocks = {
-      'views/ServiceDetailVssSectionView' : sinon.stub(),
-      'views/serviceDetailsView' : sinon.stub(),
+  var ServiceListView, mocks, mockData;
+  mockData = {
       router : sinon.stub(),
-      model : sinon.stub()
+      model : sinon.stub(),
+      vssView : sinon.stub(),
+      detailsView : sinon.stub(),
+      detailsViewObject : sinon.stub()
   };
+  //mock defined modules
+  mocks = {
+      'views/ServiceDetailVssSectionView' : mockData.vssView,
+      'views/serviceDetailsView' : mockData.detailsView
+  };
+  // the mock for serviceDetailsView returns a mock object 
+  mockData.detailsView.returns(mockData.detailsViewObject);
   
   // get module to test, with mock views
   ServiceListView = testr('views/serviceListView', mocks);
@@ -15,11 +22,12 @@ describe("ServiceListView", function() {
   describe("ServiceListView init empty", function() {
     console.log('ServiceListView test');
     var view;
+    
     beforeEach(function () {
       setFixtures('<div id="list"></div>');
       view = new ServiceListView({
-        router : mocks.router,
-        model : mocks.model
+        router : mockData.router,
+        model : mockData.model
       });
     });
     
@@ -31,7 +39,7 @@ describe("ServiceListView", function() {
   
     it("initialize takes router param", function() {
       console.log('Running ServiceListView.test2');
-      expect(view.router).toEqual(mocks.router);
+      expect(view.router).toEqual(mockData.router);
     });
     
     it("should create a table element with correct classes", function() {
@@ -52,7 +60,7 @@ describe("ServiceListView", function() {
 
   describe("ServiceListView render table with content", function() {
     console.log('ServiceListView test2');
-    var view, mockData = {};
+    var view;
     
     beforeEach(function () {
       // need a real module to create test data
@@ -147,17 +155,21 @@ describe("ServiceListView", function() {
         singleVss : false,
         vssHeaders : mockData.vssHeaders3
       });
-      mocks.router = {    
+      
+      mockData.router = {    
           searchResults : {},
           serviceDetailView : {},
           detailsView : {},
           subtabsModel : new Backbone.Model(),
-          contentRegion : new Backbone.Marionette.Region({el:'#content'})
+          contentRegion : {}
       };
-      sinon.stub(mocks.router.contentRegion, "show");
+      mockData.router.contentRegion.show = function () {};
+      mocks.routerContentRegionShow = sinon.stub(mockData.router.contentRegion, "show");
 
+      setFixtures('<div id="list"></div>');
+      
       view = new ServiceListView({
-        router : mocks.router,
+        router : mockData.router,
         model : mockData.list
       });
     });
@@ -181,8 +193,14 @@ describe("ServiceListView", function() {
       expect('click').toHaveBeenTriggeredOn('#list tbody tr:eq(0)');
       expect(clickSpy).toHaveBeenTriggered();
 
-      expect(mocks.serviceDetailsView).toHaveBeenCalledOnce();
-      expect(mocks.serviceDetailsView).toHaveBeenCalledWith({model: [], router: mocks.router, desc: 'TITLE1'});
+      expect(mockData.detailsView).toHaveBeenCalledOnce();
+      expect(mockData.detailsView).toHaveBeenCalledWith({
+        model: [], 
+        router: mockData.router, 
+        desc: 'TITLE1'
+      });
+      expect(mocks.routerContentRegionShow).toHaveBeenCalledOnce();
+      expect(mocks.routerContentRegionShow).toHaveBeenCalledWith(mockData.detailsViewObject);
     });
     
     it("should call ServiceDetailVssSectionView when click on multiple vssHeaders row", function() {
@@ -191,11 +209,12 @@ describe("ServiceListView", function() {
       expect('click').toHaveBeenTriggeredOn('#list tbody tr:eq(2)');
       expect(clickSpy).toHaveBeenTriggered();
 
-      expect(mocks.serviceDetailsVssView).toHaveBeenCalledOnce();
-      expect(mocks.serviceDetailsVssView).toHaveBeenCalledWith({
+      expect(mockData.vssView).toHaveBeenCalledOnce();
+      expect(mockData.vssView).toHaveBeenCalledWith({
         model: mockData.vssHeaders3, 
-        router: mocks.router, 
-        desc: 'TITLE3'});
+        router: mockData.router, 
+        desc : 'TITLE3'
+      });
     });
 
   });

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<label for="notes">Notes</label>
+		<textarea id="noteTxt" name="noteTxt" class="span9" rows="10"><%= noteTxt %></textarea>
+	</div>
+	<div class="row-fluid">
+		<label for="Public note" class="span2">Public note</label> 
+		<input id="publicNote" type="checkbox" name="publicNote" 
+		<% if (publicNote) { %>checked="checked"<% } %> /> 
+	</div>
+	<div class="row-fluid status-bar">
+		<div class="span12">
+			<div class="alert alert-success" style="display: none">
+				<b>Success!</b> Notes has been saved.
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<input type="button" id="clearNotes" class="btn btn-primary"
+		value="Clear" /> <input type="button" id="saveNotes"
+		class="btn btn-primary" value="Save" />
+</div>

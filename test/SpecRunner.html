@@ -31,14 +31,13 @@
         };
 
         testr.config({
-          root: '../',
-//        baseUrl: 'scripts',
+	      baseUrl: '../scripts',
           specUrl: 'specs',
-          ignore :['jquery', 'underscore', 'backbone']
+          ignore :['jquery', 'underscore', 'backbone', 'marionette', 'dataTables']
 	    });
 
         // load app and specs
- 	    testr.run('testConfig.js', function() {
+	    testr.run('testConfig.js', function() {
 	      // kick off the test framework 
           jasmineEnv.execute();
         });
@@ -50,6 +49,6 @@
 
 <body>
 	<h1>Standalone testing with Jasmine</h1>
-	<p>Start tomcat, go to <a href="http://localhost:8080/application/app/spec/SpecRunner.html">http://localhost:8080/application/app/test/SpecRunner.html</a></p>
+	<p>Start tomcat, go to <a href="http://localhost:8080/impact/application/app/spec/SpecRunner.html">http://localhost:8080/impact/application/app/test/SpecRunner.html</a></p>
 </body>
 </html>

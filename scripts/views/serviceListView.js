@@ -33,7 +33,8 @@ define([
 
       this.$el.dataTable({
         "aoColumns" : headers,
-        "aaSorting" : []
+        "aaSorting" : [],
+        "sDom": '<"top"lf>rt<"bottom"p><"clear">'
       });
 
       return this.el;

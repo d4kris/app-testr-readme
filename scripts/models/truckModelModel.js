@@ -1,13 +1,12 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
+  'backbone'
 ], function ( $, _, Backbone ) {
 
 	var TruckModelModel = Backbone.Model.extend({
 
     defaults : {
-      id      : '',
       brand   : '',
       modelId : ''
     }, 
